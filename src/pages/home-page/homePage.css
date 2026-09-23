@@ -1,0 +1,17 @@
+#home-page-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 10rem 0;
+
+    & a {
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 2px 4px
+    }
+
+    & a:hover {
+        background-color: black;
+        color: white;
+    }
+}
