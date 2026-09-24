@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { tokenService } from '../../../service/TokenService';
 
-export function LoginrForm() {
+export function LoginForm() {
   const {
     register,
     handleSubmit,

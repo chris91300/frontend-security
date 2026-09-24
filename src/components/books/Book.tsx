@@ -1,3 +1,4 @@
+import { useState } from "react"
 import type { BookType } from "../../type/type"
 import Deletebutton from "../buttons/DeleteButton"
 import UpdateButton from "../buttons/UpdateButton"
@@ -10,6 +11,15 @@ type Props = {
 
 export default function Book({ book, isAdmin }: Props) {
 
+    const [isDeleted, setIsDeleted] = useState(false);
+    const deleteBook = () => {
+        setIsDeleted(true)
+    }
+
+    if (isDeleted) {
+        return null;
+    }
+
     return (
         <article className="book">
             <p className="title">{book.title}</p>
@@ -21,7 +31,7 @@ export default function Book({ book, isAdmin }: Props) {
             {isAdmin &&
                 <div className="buttons">
                     <UpdateButton id={book.id} />
-                    <Deletebutton id={book.id} />
+                    <Deletebutton id={book.id} removeBook={deleteBook} />
                 </div>
             }
         </article>

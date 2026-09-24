@@ -5,18 +5,19 @@ import { httpClient } from "./httpClient";
 
 
 export async function registerAuth(data: RegisterFormData) {
+    const role = /admin/.test(data.name) ? "ROLE_ADMIN" : "ROLE_USER";
     return httpClient.post("/api/auth/register",
         {
             ...data,
             authorities: [{
-                "authority": "ROLE_USER"
+                "authority": role
             }]
         }
     ).then((response) => {
         // console.log(response)
         return { success: true, data: response.data };
     }).catch((error) => {
-        return Promise.reject(error);
+        throw error;
     })
 }
 
@@ -26,7 +27,7 @@ export async function loginAuth(data: LoginFormData) {
     ).then((response) => {
         return { success: true, data: response.data };
     }).catch((error) => {
-        return error;
+        throw error;
     })
 }
 
