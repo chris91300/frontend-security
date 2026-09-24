@@ -1,6 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registerSchema, type RegisterFormData } from '../../../schema-zod/schema';
+import { registerAuth } from '../../../api/auth.service';
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 export function RegisterForm() {
   const {
@@ -10,10 +13,24 @@ export function RegisterForm() {
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
   });
+  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const onSubmit = (data: RegisterFormData) => {
+  const onSubmit = async (data: RegisterFormData) => {
     // il faudra ajouter le role "ROLE_USER"
     console.log(data);
+    try {
+      await registerAuth(data);
+      navigate("/login")
+    } catch (error: any) {
+      let errorMessage = "Une erreur est survenue.";
+      if (error.status === 400) {
+        errorMessage === error.message;
+      }
+
+      setErrorMessage(error.message);
+    }
+
   };
 
   return (
@@ -40,6 +57,7 @@ export function RegisterForm() {
 
 
       <button type="submit">Envoyer</button>
+      <p className='errorMessage'>{errorMessage}</p>
     </form>
   );
 }
