@@ -44,6 +44,9 @@ export const addBookSchema = z.object({
     copiesAvailable: z.string()
 })
 
+export const updateBookSchema = addBookSchema;
+
 export type RegisterFormData = z.infer<typeof registerSchema>;
 export type LoginFormData = z.infer<typeof loginSchema>;
 export type AddBookFormData = z.infer<typeof addBookSchema>;
+export type UpdateBookFormData = z.infer<typeof updateBookSchema>;
