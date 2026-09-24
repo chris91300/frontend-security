@@ -17,5 +17,33 @@ export const loginSchema = z.object({
     password: z.string()
 });
 
+/**
+ *  private String title;
+
+    @Nonnull
+    @Column(nullable = false)
+    private String author;
+
+    @Nonnull
+    @Column(nullable = false)
+    private String category;
+
+    @Nonnull
+    @Column(nullable = false)
+    private String yearOfPublication;
+
+    @Nonnull
+    @Column(nullable = false)
+    private String copiesAvailable;
+ */
+export const addBookSchema = z.object({
+    title: z.string(),
+    author: z.string(),
+    category: z.string(),
+    yearOfPublication: z.string(),
+    copiesAvailable: z.string()
+})
+
 export type RegisterFormData = z.infer<typeof registerSchema>;
 export type LoginFormData = z.infer<typeof loginSchema>;
+export type AddBookFormData = z.infer<typeof addBookSchema>;

@@ -13,7 +13,7 @@ function BooksPage() {
     const [isLoading, setLoading] = useState(true)
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-    const isAnAdmin = true; //isAdmin();
+    const isAnAdmin = isAdmin();
 
     useEffect(() => {
 
