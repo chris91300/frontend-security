@@ -1,30 +1,34 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { registerSchema, type RegisterFormData } from '../../../schema-zod/schema';
-import { registerAuth } from '../../../api/auth.service';
+import { loginSchema, type LoginFormData } from '../../../schema-zod/schema';
+import { loginAuth } from '../../../api/auth.service';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { tokenService } from '../../../service/TokenService';
 
-export function RegisterForm() {
+export function LoginrForm() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<RegisterFormData>({
-    resolver: zodResolver(registerSchema),
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
   });
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onSubmit = async (data: RegisterFormData) => {
+  const onSubmit = async (data: LoginFormData) => {
     setErrorMessage("");
     try {
-      await registerAuth(data);
-      navigate("/login")
+      const response = await loginAuth(data);
+      tokenService.save(response.data);
+      navigate("/books")
     } catch (error: any) {
       let errorMessage = "Une erreur est survenue.";
+      console.log(error.status)
       if (error.status === 400) {
-        errorMessage = error.message;
+        console.log("erreur status 400")
+        errorMessage = "identifiant incorrect";
       }
 
       setErrorMessage(errorMessage);
@@ -35,11 +39,6 @@ export function RegisterForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
 
-      <label>
-        nom
-        <input {...register('name')} />
-        {errors.name && <span>{errors.name.message}</span>}
-      </label>
 
       <label>
         email
