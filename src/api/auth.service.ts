@@ -42,7 +42,14 @@ export function hasRole(role: "USER" | "ADMIN") {
     }
 }
 
-
+export function isAdmin() {
+    const role = getRole();
+    if (role === "ROLE_ADMIN") {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 
 export function getRole() {

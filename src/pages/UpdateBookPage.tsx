@@ -1,6 +1,6 @@
 import withAuthorization from "../components/protected-route/withAuthorization";
 
-function UpdateBookPage() {
+export function UpdateBookPage() {
 
     return <h1>UPDATE BOOK PAGE</h1>
 }

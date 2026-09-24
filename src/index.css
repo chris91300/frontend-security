@@ -76,6 +76,10 @@ body {
 
 main {
   padding: 5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
 }
 
 h1,
@@ -134,4 +138,8 @@ label {
   flex-direction: column;
   justify-content: flex-start;
 
+}
+
+p.error {
+  color: red;
 }

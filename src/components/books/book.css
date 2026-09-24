@@ -1,0 +1,19 @@
+.book {
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+div.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}

@@ -15,7 +15,7 @@ export default function Router() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/books" element={<ProtectedBooksPage />} />
             <Route path="/addBook" element={<ProtectedAddBookPage />} />
-            <Route path="/updateBook" element={<ProtectedUpdateBookPage />} />
+            <Route path="/updateBook/:id" element={<ProtectedUpdateBookPage />} />
 
             <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
