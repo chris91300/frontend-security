@@ -147,8 +147,6 @@ form {
 label {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
 
-  & p {
-    text-align: start;
-  }
 }
