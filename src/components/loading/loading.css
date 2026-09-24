@@ -1,0 +1,32 @@
+@keyframes spin {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+div.loading {
+    aspect-ratio: 1;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-radius: 100%;
+    margin: auto;
+    animation: spin 500ms linear infinite;
+}
+
+div.loading.small {
+    width: 20px;
+}
+
+div.loading.medium {
+    width: 80px;
+}
+
+div.loading.big {
+    width: 150px;
+}
